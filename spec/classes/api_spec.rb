@@ -60,7 +60,7 @@ describe 'aptly::api' do
       it do
         is_expected.to contain_exec('aptly-api-systemd-reload').with(
           command: 'systemctl daemon-reload',
-          path: [ '/usr/bin', '/bin', '/usr/sbin' ],
+          path: ['/usr/bin', '/bin', '/usr/sbin'],
           refreshonly: true,
           notify: 'Service[aptly-api]',
         )
