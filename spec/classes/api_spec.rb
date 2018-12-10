@@ -54,6 +54,19 @@ describe 'aptly::api' do
       end
     end
 
+    describe 'systemd aptly api reload' do
+      let(:params) { {} }
+
+      it do
+        is_expected.to contain_exec('aptly-api-systemd-reload').with(
+          command: 'systemctl daemon-reload',
+          path: [ '/usr/bin', '/bin', '/usr/sbin' ],
+          refreshonly: true,
+          notify: 'Service[aptly-api]',
+        )
+      end
+    end
+
     describe 'ensure' do
       context 'present (default)' do
         let(:params) { {} }
